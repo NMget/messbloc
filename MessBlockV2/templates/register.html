@@ -1,0 +1,11 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+<form method="POST" class="formulaire">
+	{{ form.csrf_token }}
+	{{ form.id_field }}
+	{{ wtf.form_field(form.username) }}
+	{{ wtf.form_field(form.password) }}
+	{{ wtf.form_field(form.admin) }}
+	{{ wtf.form_field(form.active) }}
+	{{ wtf.form_field(form.submit) }}
+</form>

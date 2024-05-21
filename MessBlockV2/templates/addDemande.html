@@ -1,0 +1,84 @@
+{% import "bootstrap/wtf.html" as wtf %}
+
+<form method="post" class="formulaire">
+	{{ form.csrf_token }}
+	{{ form.id_field }}
+	{{ wtf.form_field(form.demandeur) }}
+	{{ wtf.form_field(form.date_debut) }}
+	{{ wtf.form_field(form.date_fin) }}
+	{{ wtf.form_field(form.bloc_perm) }}
+	{{ wtf.form_field(form.adr_nom) }}
+	{{ wtf.form_field(form.sens) }}
+	{{ wtf.form_field(form.liste) }}
+	{{ wtf.form_field(form.nliste) }}
+	{{ wtf.form_field(form.motif) }}
+	{{ wtf.form_field(form.etat) }}
+	{{ wtf.form_field(form.submit)}}
+</form>
+
+<script>
+	document.getElementById("debut").addEventListener("change", myUpdate)
+	document.getElementById("fin").addEventListener("change", myUpdate)
+	function myUpdate() {
+		//alert('update');
+		var dateDebut = document.getElementById("debut").value;
+		var dateFin = document.getElementById("fin").value;
+
+		var today = new Date();
+
+		var d1 = new Date(dateDebut);
+		var d2 = new Date(dateFin);
+
+		var diff = d2.getTime() - d1.getTime();
+
+		var daydiff = diff / (1000 * 60 * 60 * 24);
+
+		console.log(daydiff + "jours")
+
+		document.getElementById("duree").value = daydiff
+
+		if (today >= d2) {
+			document.getElementById("etat").value = "TT"
+		} else {
+			document.getElementById("etat").value = "EC"
+		}
+
+	}
+
+	document.getElementById("sens").onchange = function autreUpdate() {
+		var sens = document.getElementById("sens").value;
+
+		if (sens == "entrant") {
+			document.getElementById("liste").value = "blacklisted-senders"
+		} else if (sens == "sortant") {
+			document.getElementById("liste").value = "blacklisted-return-path"
+		} else if (sens == "entrant WhiteList") {
+			document.getElementById('liste').value = "whitelisted-senders"
+		} else if (sens == "") {
+			document.getElementById('liste').value = ""
+		} else {
+			document.getElementById("liste").value = "blacklisted-senders / blacklisted-return-path"
+		}
+
+		var n = window.prompt("Numéro de liste", "")
+
+		document.getElementById('nliste').value = n
+	}
+
+
+
+	document.getElementById("demandeur").onchange = function soc() {
+		if (document.getElementById("demandeur").value == "soc") {
+			var ref = window.prompt("Référence du message", "*****")
+			refe = "[SOC#" + ref + "]"
+
+			var res = document.createElement('option')
+			res.value = refe
+			res.innerHTML = refe
+			document.getElementById("demandeur").appendChild(res)
+			document.getElementById("demandeur").value = refe
+		}
+
+
+	}
+</script>

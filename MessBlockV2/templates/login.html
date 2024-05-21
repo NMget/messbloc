@@ -1,0 +1,7 @@
+<form method="POST" class="formulaire">
+	{{ form.hidden_tag() }}
+	{{ form.username }}
+	{{ form.password }}
+	{{ form.submit }}
+	<a href="{{url_for('user_bp.password')}}">Changer mot de passe</a>
+</form>

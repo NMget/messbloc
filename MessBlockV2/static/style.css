@@ -1,0 +1,109 @@
+@font-face {
+    font-family: "font 1";
+    src: url(./assets/JosefinSans-Regular.ttf);
+}
+:root{
+    --color1:rgb(29, 76, 103);
+    --color2:rgb(244, 147, 34);
+}
+
+.form-check-input{
+    height: 90%;
+}
+
+.table{
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+    color: var(--color2);
+    background-color: var(--color1);
+    font-weight: bold;
+    padding: 0.5%;
+    letter-spacing: 8px;
+    font-size: 40px;
+}
+
+body{
+    background-color: whitesmoke;
+    font-size: 16px;
+}
+
+h2{
+    margin-top: 2%;
+    text-indent: 20%;
+    color: var(--color1);
+    text-transform:capitalize;
+    font-weight: bold;
+    font-size: 32px;
+}
+h4{
+    font-size: 24px;
+}
+h6{
+    font-size: 20px;
+}
+.formulaire{
+    display: grid;
+    margin-top: 2%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+input{
+    margin-top: 5%;
+    height: 70px;
+    text-indent: 5px;
+    font-size: x-large;
+}
+
+.deco{
+    float: right;
+}
+
+img{
+    width: 50px;
+}
+
+p{
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.gang{
+    background-color: rgb(255, 255, 255);
+}
+
+.menu{
+    text-align: left;
+    letter-spacing: normal;
+}
+
+.menua{
+    text-decoration: None;
+    color: gray;
+    font-size: small;
+    margin-left: 10%;
+}
+
+.menubtn{
+    padding: 0%;
+    margin-left: 1%;
+    float: left;
+    background: None;
+    border: 0ch;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.menubtn:hover{
+    background: None;
+    color: var(--color2);
+}
+
+.menua:hover{
+    color: rgb(102, 102, 102);
+    text-decoration: none;
+}
+

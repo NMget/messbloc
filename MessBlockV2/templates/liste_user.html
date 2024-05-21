@@ -1,0 +1,40 @@
+<section class="container">
+	<div class="row">
+		<table class="table table-hover" data-toggle="table" data-search="true">
+			<thead>
+				<tr>
+					<th data-sortable data-search="id">ID</th>
+					<th data-sortable data-search="username">Nom d'utilisateur</th>
+					<th>Admin ?</th>
+					<th>Active ?</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for user in users %}
+				<tr>
+					<td>{{ user.id }}</td>
+					<td>{{ user.username }}</td>
+					<td>{{ user.admin }}</td>
+					<td>{{user.active }}</td>
+					<td><a href="{{ url_for('user_bp.admin', id = user.id) }}">
+							{% if user.admin == True %}
+							retrograder
+							{% else %}
+							promouvoir
+							{% endif %}
+						</a></td>
+					<td><a href="{{ url_for('user_bp.active', id = user.id) }}">
+							{% if user.active == True %}
+							désactiver
+							{% else %}
+							activer
+							{% endif %}
+						</a></td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</section>

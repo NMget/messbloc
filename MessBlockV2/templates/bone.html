@@ -1,0 +1,54 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block styles %}
+{{ super() }}
+{% endblock %}
+
+{% block title %}
+{{ Titre }}
+{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/bootstrap.min.css">
+<link rel="stylesheet" href="/static/bootstrap-table.min.css">
+
+
+<link rel="stylesheet" href="/static/style.css">
+
+<body>
+	<h1>
+		<button class="btn btn-primary menubtn" type="button" data-bs-toggle="offcanvas"
+			data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">≡</button>
+
+		<div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1"
+			id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
+			<div class="offcanvas-header">
+				<h4 class="offcanvas-title" id="offcanvasScrollingLabel">Menu</h4>
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+					aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body menu">
+				<h6>Demandes</h6>
+				<a class="menua" href="{{url_for('demande_bp.add')}}">Nouvelle demande</a>
+				<a class="menua" href="{{url_for('demande_bp.liste')}}">Liste des demandes</a>
+				{% if current_user.admin %}
+				<h6>Comptes agents</h6>
+				<a class="menua" href="{{url_for('user_bp.register')}}">Ajouter un compte</a>
+				<a class="menua" href="{{url_for('user_bp.liste')}}">Liste des comptes</a>
+				{% endif %}
+			</div>
+		</div>MessBloc<div class="deco">
+			<a href="{{url_for('user_bp.logout')}}"><img src="/static/assets/5844.png" alt="logout"></a>
+		</div>
+	</h1>
+
+	<h2>{{ H2 }}</h2>
+	{% include Content %}
+
+</body>
+<script src="/static/script/bootstrap-table.min.js"></script>
+<script src="/static/script/bootstrap.bundle.min.js"></script>
+<script src="/static/script/jquery-3.4.1.slim.min.js"></script>
+<script src="/static/script/popper.min.js"></script>
+</html>
+{% endblock %}

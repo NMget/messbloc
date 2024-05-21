@@ -1,0 +1,66 @@
+<section class="container">
+	<div class="row">
+		<table class="table" data-toggle="table" data-search="true">
+			<thead>
+				<tr>
+					<th data-sortable="true" data-field="id" data-sort-name="id"
+						data-sort-order="esc">ID</th>
+					<th data-sortable="true" data-field="etat" data-sort-name="etat"
+						data-sort-order="esc">Etat</th>
+					<th data-sortable="true" data-field="date_fin" data-sort-name="date_fin"
+						data-sort-order="esc">Fin</th>
+					<th data-sortable="true" data-field="liste" data-sort-name="liste"
+						data-sort-order="esc">Listes</th>
+					<th data-sortable="true" data-field="nliste" data-sort-name="nliste"
+						data-sort-order="esc">N° liste</th>
+					<th data-sortable="true" data-field="adr_nom" data-sort-name="adr_nom"
+						data-sort-order="esc">Adresse mail ou domaine source</th>
+					<th data-sortable="true" data-field="date_debut" data-sort-name="date_debut"
+						data-sort-order="esc">Début</th>
+					<th data-sortable="true" data-field="demandeur" data-sort-name="demandeur"
+						data-sort-order="esc">Demandeur</th>
+					<th data-sortable="true" data-field="motif" data-sort-name="motif"
+						data-sort-order="esc">Motif</th>
+					<th data-sortable="true" data-field="agent" data-sort-name="agent"
+						data-sort-order="esc">Agent</th>
+					<th></th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{% for demande in demandes %}
+				{% if demande.liste == "whitelisted-senders" %}
+				<tr class="table-light">
+					{% else %}
+				<tr class="table-dark">
+					{% endif %}
+					<td>{{ demande.id}}</td>
+					<td>{{ demande.etat}}</td>
+					<td>{{ demande.date_fin}}</td>
+					<td>{{ demande.liste}}</td>
+					<td>{{ demande.nliste}}</td>
+					<td>{{ demande.adr_nom}}</td>
+					<td>{{ demande.date_debut}}</td>
+					<td>{{ demande.demandeur}}</td>
+					<td>{{ demande.motif}}</td>
+					<td>{{ demande.user.username}}</td>
+					{% if demande.etat == "ec" %}
+					<td id="terminer"><a href="{{url_for('demande_bp.terminer', id = demande.id)}}"
+							id="terminer">Terminer le blocage</a></td>
+					{% else %}
+					<td></td>
+					{% endif %}
+				</tr>
+				{% endfor %}
+			</tbody>
+
+		</table>
+	</div>
+</section>
+
+<script>
+	document.getElementById("terminer").onclick = function mail() {
+		var body = window.prompt("Corps du mail", "Bonjour, le blocage de l'adresse/domaine arrive à son terme.")
+		console.log(body)
+	}
+</script>
